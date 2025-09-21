@@ -1,6 +1,7 @@
 // src/pages/StudentPage.js
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { clearUser } from "../store/userSlice"; 
 import { useNavigate } from "react-router-dom";
 import socket from "../socket";
 import { setJoinStatus } from "../store/userSlice";
@@ -72,12 +73,17 @@ export default function StudentPage() {
   // Handle removal
   useEffect(() => {
     const handleRemoved = () => {
-      navigate("/kicked");
+        // Clear user data from Redux
+        // Navigate to kicked page
+        navigate("/kicked");
+        setTimeout(() => {
+            dispatch(clearUser());
+          }, 100);
     };
 
     socket.on("removed", handleRemoved);
     return () => socket.off("removed", handleRemoved);
-  }, [navigate]);
+  }, [navigate, dispatch]);
 
   const selectOption = (optionIndex) => {
     if (poll.hasAnswered || poll.status !== "active") return;
@@ -187,7 +193,6 @@ export default function StudentPage() {
 
             {poll.hasAnswered && (
               <div className="submitted-state">
-                <div className="check-icon">✓</div>
                 <p>Answer submitted! Waiting for results...</p>
               </div>
             )}

@@ -28,7 +28,7 @@ export default function FloatingChat() {
     };
     
     socket.emit("chat_message", msg);
-    dispatch(addMessage(msg));
+    // dispatch(addMessage(msg));
     setNewMessage("");
   };
 
@@ -39,9 +39,10 @@ export default function FloatingChat() {
       socket.emit("remove-student", { studentId }, (response) => {
         if (response && response.status === "error") {
           alert("Error: " + response.message);
-        } else {
-          dispatch(removeStudent(studentId));
-        }
+        } 
+        // else {
+        //   dispatch(removeStudent(studentId));
+        // }
       });
     }
   };

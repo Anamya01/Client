@@ -12,6 +12,7 @@ const initialState = {
   totalStudents: 0,
   userAnswer: null, // Index of user's answer
   hasAnswered: false,
+  history: [], // ADD THIS LINE
 };
 
 const pollSlice = createSlice({
@@ -53,6 +54,17 @@ const pollSlice = createSlice({
         }));
       }
       state.status = "finished";
+      
+      // SAVE TO HISTORY - ADD THIS BLOCK
+      if (state.question && state.options.length > 0) {
+        state.history.push({
+          question: state.question,
+          options: state.options.map((opt) => opt.text),
+          votes: Object.fromEntries(state.options.map((opt) => [opt.text, opt.count])),
+          completedAt: new Date().toISOString(),
+          totalVotes: state.options.reduce((sum, opt) => sum + opt.count, 0)
+        });
+      }
     },
 
     setUserAnswer(state, action) {
@@ -61,7 +73,11 @@ const pollSlice = createSlice({
     },
 
     resetPoll(state) {
-      Object.assign(state, initialState);
+      // Reset but keep history
+      Object.assign(state, {
+        ...initialState,
+        history: state.history // Preserve history
+      });
     },
   },
 });

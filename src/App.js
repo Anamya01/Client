@@ -23,6 +23,7 @@ import JoinPage from "./pages/JoinPage";
 import TeacherPage from "./pages/TeacherPage";
 import StudentPage from "./pages/StudentPage";
 import KickedPage from "./pages/KickedPage";
+import PollHistoryPage from "./components/PollHistory";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function App() {
         options: data.options,
         timeLimit: data.timeLimit || 60,
       }));
-      dispatch(clearStudents());
+      // dispatch(clearStudents());
     });
 
     socket.on("server:pollUpdate", (data) => {
@@ -109,6 +110,7 @@ function App() {
       <Route path="/join" element={<JoinPage />} />
       <Route path="/teacher" element={<TeacherPage />} />
       <Route path="/student" element={<StudentPage />} />
+      <Route path="/poll-history" element={<PollHistoryPage />} />
       <Route path="/kicked" element={<KickedPage />} />
     </Routes>
   );
