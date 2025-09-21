@@ -1,0 +1,151 @@
+/* src/pages/HomePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+.homepage {
+    min-height: 100vh;
+    background: #f8f9fa;
+    font-family: Sora;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  /* Brand Header */
+  .brand-header {
+    position: absolute;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Main Content */
+  .homepage-content {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .home-section {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #1a202c;
+    margin-bottom: .5rem;
+    line-height: 1;
+  }
+  
+  .highlight {
+    color: #1a202c;
+    font-weight: 700;
+  }
+  
+  .sub {
+    font-size: 1.1rem;
+    color: #718096;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* Role Selection */
+  .role-selection {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+  }
+  
+  .role-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.5rem 1.5rem;
+    width: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+  }
+  
+  .role-card:hover {
+    border-color: #8b7cf6;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 124, 246, 0.15);
+  }
+  
+  .role-card.selected {
+    border: 2px solid #8b7cf6;
+    background: linear-gradient(135deg, #f8f7ff 0%, #f0edff 100%);
+    box-shadow: 0 10px 25px rgba(139, 124, 246, 0.2);
+  }
+  
+  .role-title {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #1a202c;
+    margin-bottom: 0rem;
+    margin-top: 0%;
+  }
+  
+  .role-description {
+    font-size: .8rem;
+    color: #718096;
+    line-height: 1.5;
+    margin-top: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .homepage {
+      padding: 1rem;
+    }
+    
+    .brand-header {
+      top: 2rem;
+    }
+    
+    .main-title {
+      font-size: 2.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+    }
+    
+    .role-selection {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .role-card {
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .continue-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-title {
+      font-size: 2rem;
+    }
+    
+    .role-card {
+      padding: 1.5rem;
+    }
+    
+    .role-title {
+      font-size: 1.3rem;
+    }
+    
+    .role-description {
+      font-size: 0.9rem;
+    }
+  }

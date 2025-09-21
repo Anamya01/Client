@@ -1,0 +1,196 @@
+/* src/pages/JoinPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+.joinpage {
+    min-height: 100vh;
+    background: #f8f9fa;
+    font-family: Sora;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  /* Brand Header */
+  
+  .brandlogo {
+    display: inline-flex;
+    align-items: center;
+    background: #7565D9;
+    background: linear-gradient(73deg, rgba(117, 101, 217, 1) 0%, rgba(77, 10, 205, 1) 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 400;
+    gap: 0.5rem;
+    box-shadow: 0 4px 20px rgba(139, 124, 246, 0.3);
+  }
+  
+  .brandicon {
+    font-size: 1rem;
+  }
+  
+  .brandtext {
+    font-size: 1rem;
+  }
+  
+  /* Main Content */
+  .joinpage-content {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .heading-section {
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .main-head {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .desc {
+    font-size: 1rem;
+    color: #718096;
+    line-height: 1.6;
+    width: 100%;
+  }
+  
+  /* Name Form */
+  .name-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .input-section {
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+  }
+  
+  .input-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 1rem;
+  }
+  
+  .name-input {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 2px;
+    background: #F2F2F2;
+    color: #000000;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    border: none;
+  }
+  
+  .name-input::placeholder {
+    color: #a0aec0;
+  }
+  
+  .error-message {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 0.75rem 1.25rem;
+    border-radius: 2px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+  
+  .continue-btn {
+    background: #8F64E1;
+    background: linear-gradient(73deg, rgba(143, 100, 225, 1) 0%, rgba(29, 104, 189, 1) 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    box-shadow: 0 6px 20px rgba(139, 124, 246, 0.4);
+  }
+  
+  .continue-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 124, 246, 0.5);
+  }
+  
+  .continue-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .joinpage {
+      padding: 1rem;
+    }
+    
+    .brand-header {
+      top: 2rem;
+    }
+    
+    .main-title {
+      font-size: 2.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+    }
+    
+    .input-section {
+      max-width: none;
+    }
+    
+    .name-input {
+      padding: 1rem 1.25rem;
+    }
+    
+    .continue-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-title {
+      font-size: 2rem;
+    }
+    
+    .subtitle {
+      font-size: 0.95rem;
+    }
+    
+    .input-label {
+      font-size: 1.1rem;
+    }
+    
+    .name-input {
+      font-size: 1rem;
+      padding: 0.875rem 1rem;
+    }
+    
+    .continue-btn {
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+    }
+  }

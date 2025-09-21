@@ -7,6 +7,7 @@ import { setJoinStatus } from "../store/userSlice";
 import { setUserAnswer } from "../store/pollSlice";
 import { addMessage } from "../store/chatSlice";
 import './StudentPage.css';
+import FloatingChat from "../components/FloatingChat";
 
 export default function StudentPage() {
   const dispatch = useDispatch();
@@ -198,12 +199,7 @@ export default function StudentPage() {
           <div className="poll-results">
             <div className="results-header">
               <h2 className="poll-question-title">Question 1</h2>
-              <div className="timer completed">
-                <span className="timer-icon">⏰</span>
-                <span className="timer-text">{formatTime(0)}</span>
-              </div>
             </div>
-
             <div className="question-card">
               <div className="question-header">{poll.question}</div>
               
@@ -241,100 +237,7 @@ export default function StudentPage() {
           </div>
         )}
       </div>
-
-      {/* Chat Popup - Only show during active poll or results */}
-      {(poll.status === "active" || poll.status === "finished") && (
-        <>
-          <button
-            className="chat-float-btn"
-            onClick={() => setShowChatPopup(!showChatPopup)}
-          >
-            💬
-          </button>
-
-          {showChatPopup && (
-            <div className="chat-popup-overlay">
-              <div className="chat-popup">
-                <div className="chat-header">
-                  <div className="chat-tabs">
-                    <button
-                      className={`chat-tab ${chatTab === 'chat' ? 'active' : ''}`}
-                      onClick={() => setChatTab('chat')}
-                    >
-                      Chat
-                    </button>
-                    <button
-                      className={`chat-tab ${chatTab === 'participants' ? 'active' : ''}`}
-                      onClick={() => setChatTab('participants')}
-                    >
-                      Participants
-                    </button>
-                  </div>
-                  <button
-                    className="chat-close"
-                    onClick={() => setShowChatPopup(false)}
-                  >
-                    ×
-                  </button>
-                </div>
-
-                <div className="chat-content">
-                  {chatTab === 'chat' && (
-                    <div className="chat-messages">
-                      {messages.length === 0 ? (
-                        <div className="no-messages">No messages yet</div>
-                      ) : (
-                        messages.map((msg, index) => (
-                          <div key={index} className="message">
-                            <div className="message-header">
-                              <span className="message-sender">{msg.sender}</span>
-                              <span className="message-time">
-                                {new Date(msg.timestamp).toLocaleTimeString([], {
-                                  hour: '2-digit',
-                                  minute: '2-digit'
-                                })}
-                              </span>
-                            </div>
-                            <div className="message-text">{msg.text}</div>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  )}
-
-                  {chatTab === 'participants' && (
-                    <div className="participants-list">
-                      <div className="participants-header">
-                        <span>Name</span>
-                        <span>Status</span>
-                      </div>
-                      {students.map(student => (
-                        <div key={student.socketId} className="participant-row">
-                          <span className="participant-name">{student.name}</span>
-                          <span className="participant-status">Online</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {chatTab === 'chat' && (
-                  <form onSubmit={sendMessage} className="chat-input-form">
-                    <input
-                      type="text"
-                      value={newMessage}
-                      onChange={(e) => setNewMessage(e.target.value)}
-                      placeholder="Type a message..."
-                      className="chat-input"
-                    />
-                    <button type="submit" className="send-btn">Send</button>
-                  </form>
-                )}
-              </div>
-            </div>
-          )}
-        </>
-      )}
+      <FloatingChat/>
     </div>
   );
 }
