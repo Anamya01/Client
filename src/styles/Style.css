@@ -1,0 +1,43 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+.kicked-page{
+    font-family: Sora;
+}
+.info h1{
+    margin-bottom: .2rem;
+}
+.info p{
+    width: 500px;
+    color: #00000080;
+    margin-top: 0;
+}
+.brand-header{
+    position: absolute;
+    top: -5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .kick-badge{
+    top: 10rem;
+  }
+  
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #7565D9;
+    background: linear-gradient(73deg, rgba(117, 101, 217, 1) 0%, rgba(77, 10, 205, 1) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    font-weight: 500;
+    gap: 0.5rem;
+    font-family: Sora;
+  }
+  
+  .brand-icon {
+    font-size: 1rem;
+  }
+  
+  .brand-text {
+    font-size: 0.95rem;
+  }

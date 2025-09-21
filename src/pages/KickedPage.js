@@ -1,9 +1,9 @@
 import React from 'react'
-import './Style.css';
+import '../styles/Style.css';
 function KickedPage() {
   return (
     <div className='kicked-page'>
-      <div className="brand-header">
+      <div className="brand-header kick-badge">
           <div className="brand-badge">
             <span className="brand-icon">★</span>
             <span className="brand-text">Intervue Poll</span>

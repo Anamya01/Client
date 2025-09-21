@@ -1,4 +1,4 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:4000"); // backend url
+const socket = io("https://polling-1eti.onrender.com"); // backend url
 export default socket;

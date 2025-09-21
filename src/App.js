@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
@@ -8,13 +7,11 @@ import {
   setPollStarted, 
   updatePoll, 
   setPollResults,
-  resetPoll 
 } from "./store/pollSlice";
 import { 
   addStudent, 
   removeStudent, 
   setStudentLeft,
-  clearStudents 
 } from "./store/studentsSlice";
 import { addMessage } from "./store/chatSlice";
 
@@ -23,7 +20,6 @@ import JoinPage from "./pages/JoinPage";
 import TeacherPage from "./pages/TeacherPage";
 import StudentPage from "./pages/StudentPage";
 import KickedPage from "./pages/KickedPage";
-import PollHistoryPage from "./components/PollHistory";
 
 function App() {
   const dispatch = useDispatch();
@@ -110,7 +106,6 @@ function App() {
       <Route path="/join" element={<JoinPage />} />
       <Route path="/teacher" element={<TeacherPage />} />
       <Route path="/student" element={<StudentPage />} />
-      <Route path="/poll-history" element={<PollHistoryPage />} />
       <Route path="/kicked" element={<KickedPage />} />
     </Routes>
   );

@@ -1,21 +1,16 @@
 // src/pages/TeacherPage.js
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import socket from "../socket";
-import { addMessage } from "../store/chatSlice";
-import { removeStudent } from "../store/studentsSlice";
-import './TeacherPage.css';
+import '../styles/TeacherPage.css';
 import FloatingChat from "../components/FloatingChat";
 
 export default function TeacherPage() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   
   const user = useSelector(s => s.user);
   const poll = useSelector(s => s.poll);
-  const students = useSelector(s => s.students);
-  const messages = useSelector(s => s.chat);
   
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([
@@ -27,10 +22,6 @@ export default function TeacherPage() {
   const [error, setError] = useState("");
   const [timeLeft, setTimeLeft] = useState(0);
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [showHistory, setShowHistory] = useState(false);
-  const [showChatPopup, setShowChatPopup] = useState(false);
-  const [chatTab, setChatTab] = useState('chat'); // 'chat' or 'participants'
-  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     if (!user.name || user.role !== "teacher") {
@@ -116,35 +107,6 @@ export default function TeacherPage() {
       }
     });
   };
-
-  const removeStudentHandler = (studentId, studentName) => {
-    if (window.confirm(`Remove ${studentName} from the poll?`)) {
-      socket.emit("remove-student", { studentId }, (response) => {
-        if (response && response.status === "error") {
-          alert("Error: " + response.message);
-        } else {
-          dispatch(removeStudent(studentId));
-        }
-      });
-    }
-  };
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
-
-    const msg = {
-      sender: user.name,
-      role: user.role,
-      text: newMessage.trim(),
-      timestamp: new Date().toISOString()
-    };
-    
-    socket.emit("chat_message", msg);
-    dispatch(addMessage(msg));
-    setNewMessage("");
-  };
-
   if (!user.name) {
     return <div>Redirecting...</div>;
   }
@@ -275,7 +237,7 @@ export default function TeacherPage() {
         )}
 
         {/* Results Display - Active or Finished */}
-        {(poll.status === "active" || poll.status === "finished" && !showCreateForm) && (
+        {((poll.status === "active" || poll.status === "finished") && !showCreateForm) && (
           <div className="results-view">
              <div className="question-headers">Question</div>
             <div className="question-card">

@@ -1,6 +1,4 @@
-// src/store/pollSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   id: null,
   question: null,
@@ -12,7 +10,7 @@ const initialState = {
   totalStudents: 0,
   userAnswer: null, // Index of user's answer
   hasAnswered: false,
-  history: [], // ADD THIS LINE
+  history: [],
 };
 
 const pollSlice = createSlice({
@@ -55,7 +53,7 @@ const pollSlice = createSlice({
       }
       state.status = "finished";
       
-      // SAVE TO HISTORY - ADD THIS BLOCK
+      // SAVE TO HISTORY
       if (state.question && state.options.length > 0) {
         state.history.push({
           question: state.question,
@@ -73,10 +71,9 @@ const pollSlice = createSlice({
     },
 
     resetPoll(state) {
-      // Reset but keep history
       Object.assign(state, {
         ...initialState,
-        history: state.history // Preserve history
+        history: state.history
       });
     },
   },

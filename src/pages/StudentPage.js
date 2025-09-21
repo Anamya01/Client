@@ -1,4 +1,3 @@
-// src/pages/StudentPage.js
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../store/userSlice"; 
@@ -6,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import socket from "../socket";
 import { setJoinStatus } from "../store/userSlice";
 import { setUserAnswer } from "../store/pollSlice";
-import { addMessage } from "../store/chatSlice";
-import './StudentPage.css';
+import '../styles/StudentPage.css';
 import FloatingChat from "../components/FloatingChat";
 
 export default function StudentPage() {
@@ -16,14 +14,9 @@ export default function StudentPage() {
   
   const user = useSelector(s => s.user);
   const poll = useSelector(s => s.poll);
-  const students = useSelector(s => s.students);
-  const messages = useSelector(s => s.chat);
   
   const [timeLeft, setTimeLeft] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [showChatPopup, setShowChatPopup] = useState(false);
-  const [chatTab, setChatTab] = useState('chat');
-  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     if (!user.name || user.role !== "student") {
@@ -104,23 +97,6 @@ export default function StudentPage() {
       }
     });
   };
-
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
-
-    const msg = {
-      sender: user.name,
-      role: user.role,
-      text: newMessage.trim(),
-      timestamp: new Date().toISOString()
-    };
-    
-    socket.emit("chat_message", msg);
-    dispatch(addMessage(msg));
-    setNewMessage("");
-  };
-
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
