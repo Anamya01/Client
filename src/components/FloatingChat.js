@@ -1,17 +1,13 @@
-// src/components/FloatingChat.js
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import socket from "../socket";
-import { addMessage } from "../store/chatSlice";
-import { removeStudent } from "../store/studentsSlice";
-import './FloatingChat.css';
+import '../styles/FloatingChat.css';
 
 export default function FloatingChat() {
-  const dispatch = useDispatch();
   const user = useSelector(s => s.user);
   const students = useSelector(s => s.students);
   const messages = useSelector(s => s.chat);
-  
+
   const [showChatPopup, setShowChatPopup] = useState(false);
   const [chatTab, setChatTab] = useState('chat');
   const [newMessage, setNewMessage] = useState("");
@@ -26,7 +22,7 @@ export default function FloatingChat() {
       text: newMessage.trim(),
       timestamp: new Date().toISOString()
     };
-    
+
     socket.emit("chat_message", msg);
     // dispatch(addMessage(msg));
     setNewMessage("");
@@ -34,15 +30,12 @@ export default function FloatingChat() {
 
   const removeStudentHandler = (studentId, studentName) => {
     if (user.role !== "teacher") return;
-    
+
     if (window.confirm(`Remove ${studentName} from the poll?`)) {
       socket.emit("remove-student", { studentId }, (response) => {
         if (response && response.status === "error") {
           alert("Error: " + response.message);
-        } 
-        // else {
-        //   dispatch(removeStudent(studentId));
-        // }
+        }
       });
     }
   };
@@ -155,8 +148,8 @@ export default function FloatingChat() {
                   className="chat-input"
                   maxLength={500}
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="send-btn"
                   disabled={!newMessage.trim()}
                 >
