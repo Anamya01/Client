@@ -100,7 +100,7 @@ export default function FloatingChat() {
                             })}
                           </span>
                         </div>
-                        <div className="message-text">{msg.text}</div>
+                        <div className={`message-text message-bg-${msg.role}`}>{msg.text}</div>
                       </div>
                     ))
                   )}

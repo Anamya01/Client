@@ -8,10 +8,10 @@ import FloatingChat from "../components/FloatingChat";
 
 export default function TeacherPage() {
   const navigate = useNavigate();
-  
+
   const user = useSelector(s => s.user);
   const poll = useSelector(s => s.poll);
-  
+
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([
     { text: "", isCorrect: false },
@@ -49,7 +49,7 @@ export default function TeacherPage() {
 
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
-    
+
     return () => clearInterval(interval);
   }, [poll.status, poll.startedAt, poll.timeLimit]);
 
@@ -71,14 +71,14 @@ export default function TeacherPage() {
 
   const createPoll = (e) => {
     e.preventDefault();
-    
+
     const validOptions = options.filter(o => o.text.trim()).map(o => o.text.trim());
-    
+
     if (!question.trim()) {
       setError("Please enter a question");
       return;
     }
-    
+
     if (validOptions.length < 2) {
       setError("Please provide at least two options");
       return;
@@ -93,7 +93,7 @@ export default function TeacherPage() {
       timeLimit: timeLimit
     }, (response) => {
       setLoading(false);
-      
+
       if (response && response.status === "error") {
         setError(response.message);
       } else {
@@ -120,7 +120,7 @@ export default function TeacherPage() {
             <div className="form-header">
               <h1 className="main-title">Let's Get Started</h1>
               <p className="subtitle">
-                You'll have the ability to create and manage polls, ask questions, and monitor 
+                You'll have the ability to create and manage polls, ask questions, and monitor
                 your students' responses in real-time.
               </p>
             </div>
@@ -141,7 +141,7 @@ export default function TeacherPage() {
                 </div>
 
                 <div className="timer-section">
-                  <select 
+                  <select
                     value={timeLimit}
                     onChange={(e) => setTimeLimit(parseInt(e.target.value))}
                     className="timer-select"
@@ -182,7 +182,7 @@ export default function TeacherPage() {
                       )}
                     </div>
                   ))}
-                  
+
                   <button
                     type="button"
                     onClick={addOption}
@@ -239,15 +239,15 @@ export default function TeacherPage() {
         {/* Results Display - Active or Finished */}
         {((poll.status === "active" || poll.status === "finished") && !showCreateForm) && (
           <div className="results-view">
-             <div className="question-headers">Question</div>
+            <div className="question-headers">Question</div>
             <div className="question-card">
               <div className="question-text">{poll.question}</div>
-              
+
               <div className="options-results">
                 {poll.options.map((option, index) => {
                   const total = poll.options.reduce((sum, opt) => sum + opt.count, 0);
                   const percentage = total > 0 ? Math.round((option.count / total) * 100) : 0;
-                  
+
                   return (
                     <div key={index} className="option-result">
                       <div className="option-content">
@@ -255,7 +255,7 @@ export default function TeacherPage() {
                         <div className="option-name">{option.text}</div>
                       </div>
                       <div className="option-progress">
-                        <div 
+                        <div
                           className="progress-bar-fill"
                           style={{ width: `${percentage}%` }}
                         ></div>
@@ -277,14 +277,22 @@ export default function TeacherPage() {
                 >
                   + Ask a new question
                 </button>
+                <br />
+                <br />
+                <button
+                  onClick={() => navigate("/history")}
+                  className="primary-button large"
+                  style={{ marginLeft: "1rem" }}
+                >
+                  ⏿ View Poll History
+                </button>
               </div>
             )}
+
           </div>
         )}
-
-        {/* Poll History Modal */}
       </div>
-      <FloatingChat/>
+      <FloatingChat />
     </div>
   );
 }

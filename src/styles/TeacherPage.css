@@ -128,9 +128,9 @@
   }
   
   .timer-section {
-    position: absolute;
+    position: sticky;
     min-width: 150px;
-    right: 12rem;
+    right: 20.5rem;
   }
   
   .timer-select {
@@ -364,7 +364,6 @@
   .option-name {
     font-weight: 500;
     color: #2d3748;
-    background: white;
     padding-right: 1rem;
   }
   
@@ -377,6 +376,7 @@
     background: #f7fafc;
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid rgb(231, 231, 231);
   }
   
   .progress-bar-fill {

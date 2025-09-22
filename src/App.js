@@ -20,6 +20,7 @@ import JoinPage from "./pages/JoinPage";
 import TeacherPage from "./pages/TeacherPage";
 import StudentPage from "./pages/StudentPage";
 import KickedPage from "./pages/KickedPage";
+import HistoryPage from "./pages/HistoryPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -107,6 +108,7 @@ function App() {
       <Route path="/teacher" element={<TeacherPage />} />
       <Route path="/student" element={<StudentPage />} />
       <Route path="/kicked" element={<KickedPage />} />
+      <Route path="/history" element={<HistoryPage />} />
     </Routes>
   );
 }
